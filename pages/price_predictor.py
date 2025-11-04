@@ -7,6 +7,7 @@ import pandas as pd
 # Page config
 # ---------------------------
 st.set_page_config(page_title="Property Input", page_icon="🏗️", layout="wide")
+st.title(" ")
 st.title("🏙️ Property Details")
 st.caption("Fill the form and get an instant price prediction.")
 

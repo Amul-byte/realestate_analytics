@@ -28,20 +28,24 @@ st.plotly_chart(fig,use_container_width=True)
 st.header('Features Wordcloud')
 feature_text = pickle.load(open('datasets/feature_list.pkl','rb'))
 wordcloud = WordCloud(
-    width=150, height=150,
+    width=800, height=800,
     background_color='black',
     stopwords=set(['s']),
-    min_font_size=2
+    min_font_size=5,
+    prefer_horizontal=1.0,
 ).generate(feature_text)
 
 # ✅ Create a Matplotlib figure
-fig, ax = plt.subplots(figsize=(8, 8), facecolor=None)
+fig, ax = plt.subplots(figsize=(8, 8),dpi=300, facecolor=None)
 ax.imshow(wordcloud, interpolation='bilinear')
 ax.axis("off")
 plt.tight_layout(pad=0)
 
 # ✅ Now use fig instead of passing the wordcloud object
-st.pyplot(fig)
+col1, col2 = st.columns([1.25, 1])  # control layout ratio
+with col1:
+    st.pyplot(fig)
+
 
 st.header('Area Vs Price')
 

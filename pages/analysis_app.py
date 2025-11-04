@@ -271,7 +271,7 @@ with tab_map:
         if "price_per_sqft" not in sector_agg.columns and {"price","built_up_area"}.issubset(sector_agg.columns):
             sector_agg["price_per_sqft"] = sector_agg["price"] / sector_agg["built_up_area"].replace(0, np.nan)
 
-        map_fig = px.scatter_mapbox(
+        map_fig = px.scatter_map(
             sector_agg.reset_index(),
             lat="latitude", lon="longitude",
             color="price_per_sqft" if "price_per_sqft" in sector_agg.columns else None,
@@ -283,7 +283,7 @@ with tab_map:
             height=620,
             template=PLOTLY_TEMPLATE,
         )
-        map_fig.update_layout(mapbox_style="open-street-map", margin=dict(l=0, r=0, t=50, b=0))
+        map_fig.update_layout(map_style="open-street-map", margin=dict(l=0, r=0, t=50, b=0))
         st.plotly_chart(map_fig, width='stretch')
         st.caption("Map displays sector means; filtered by your selections.")
     else:

@@ -248,7 +248,7 @@ with tab_overview:
             title="Price vs. Built-up Area",
             height=500
         )
-        st.plotly_chart(fig_scatter, use_container_width=True)
+        st.plotly_chart(fig_scatter, width='stretch')
     else:
         st.info("Need columns: built_up_area, price.")
 
@@ -259,7 +259,7 @@ with tab_overview:
         fig_wc, ax = plt.subplots(figsize=(11, 3.8), dpi=150)
         ax.imshow(wc_img)
         ax.axis("off")
-        st.pyplot(fig_wc, use_container_width=True)
+        st.pyplot(fig_wc, width='stretch')
     else:
         st.caption("WordCloud is hidden (toggle in sidebar).")
 
@@ -284,7 +284,7 @@ with tab_map:
             template=PLOTLY_TEMPLATE,
         )
         map_fig.update_layout(mapbox_style="open-street-map", margin=dict(l=0, r=0, t=50, b=0))
-        st.plotly_chart(map_fig, use_container_width=True)
+        st.plotly_chart(map_fig, width='stretch')
         st.caption("Map displays sector means; filtered by your selections.")
     else:
         st.info("Map unavailable. Ensure sector aggregation & lat/long columns are present.")
@@ -299,14 +299,14 @@ with tab_distrib:
                 df[df["bedRoom"] <= (df["bedRoom"].max() if "bedRoom" in df.columns else 4)],
                 x="bedRoom", y="price", template=PLOTLY_TEMPLATE, title="BHK Price Range"
             )
-            st.plotly_chart(fig_box, use_container_width=True)
+            st.plotly_chart(fig_box, width='stretch')
         else:
             st.info("Need columns: bedRoom, price.")
     with right:
         st.subheader("BHK Share (Pie)")
         if "bedRoom" in df.columns:
             fig_pie = px.pie(df, names="bedRoom", template=PLOTLY_TEMPLATE, title="BHK Composition")
-            st.plotly_chart(fig_pie, use_container_width=True)
+            st.plotly_chart(fig_pie, width='stretch')
         else:
             st.info("Need column: bedRoom.")
 
@@ -323,7 +323,7 @@ with tab_distrib:
         ax.set_xlabel("Price")
         ax.set_ylabel("Density")
         ax.legend()
-        st.pyplot(fig_hist, use_container_width=True)
+        st.pyplot(fig_hist, width='stretch')
         st.caption("Overlaid histograms and KDEs for price, split by property type.")
     else:
         st.info("Need columns: price, property_type.")
@@ -340,7 +340,7 @@ with tab_insights:
               .head(12)
               .reset_index()
         )
-        st.dataframe(top, use_container_width=True)
+        st.dataframe(top, width='stretch')
     else:
         st.info("Need columns: sector, price_per_sqft (or price & built_up_area to derive).")
 
@@ -348,7 +348,7 @@ with tab_insights:
     if not df.empty:
         num_cols = df.select_dtypes(include=np.number).columns
         if len(num_cols):
-            st.dataframe(df[num_cols].describe().T, use_container_width=True)
+            st.dataframe(df[num_cols].describe().T, width='stretch')
         else:
             st.caption("No numeric columns found.")
     else:

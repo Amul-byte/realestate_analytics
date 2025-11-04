@@ -157,12 +157,12 @@ with tab_similar:
                     text=[f"{v:.3f}" for v in df_sim["Similarity"]],
                 )
                 fig.update_layout(height=420, xaxis_title="Similarity (cosine)", yaxis_title="")
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width='stretch')
 
                 # Table (styled)
                 styled = df_sim.copy()
                 styled["Similarity"] = styled["Similarity"].map(lambda x: f"{x:.4f}")
-                # st.dataframe(styled, use_container_width=True, hide_index=True, column_config={
+                # st.dataframe(styled, width='stretch', hide_index=True, column_config={
                 #     "Rank": st.column_config.NumberColumn(format="%d"),
                 #     "Property": st.column_config.TextColumn(),
                 #     "Similarity": st.column_config.TextColumn("Similarity (cosine)")
@@ -200,7 +200,7 @@ with tab_radius:
                     }).reset_index(drop=True)
                     out.insert(0, "Rank", range(1, len(out) + 1))
                     out["Distance (km)"] = out["Distance"].map(lambda x: f"{x/1000:.2f}")
-                    st.dataframe(out[["Rank", "Property", "Distance (km)"]], use_container_width=True, hide_index=True)
+                    st.dataframe(out[["Rank", "Property", "Distance (km)"]], width='stretch', hide_index=True)
 
                     # Chart of distances
                     fig2 = px.bar(
@@ -212,7 +212,7 @@ with tab_radius:
                         text=[_format_km(v) for v in out["Distance"]],
                     )
                     fig2.update_layout(height=500, xaxis_title="Distance (m)", yaxis_title="")
-                    st.plotly_chart(fig2, use_container_width=True)
+                    st.plotly_chart(fig2, width='stretch')
 
                     # Download
                     csv2 = out.to_csv(index=False).encode("utf-8")

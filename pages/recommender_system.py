@@ -10,7 +10,7 @@ import plotly.express as px
 # ---------------------------
 # Page config (first)
 # ---------------------------
-st.set_page_config(page_title="🏘️ Recommend Apartments", page_icon="🏙️", layout="wide")
+st.set_page_config(page_title="Recommend Apartments", page_icon="🏗️", layout="wide")
 
 # ---------------------------
 # Helper styling
@@ -104,7 +104,7 @@ def recommend_properties_with_scores(property_name: str, top_n: int = 5, w1=0.5,
 # ---------------------------
 st.markdown("""
 <div class="card">
-  <h2 style="margin:.1rem 0 .4rem 0;">🏘️ Apartment Recommender</h2>
+  <h2 style="margin:.1rem 0 .4rem 0;">Apartment Recommender</h2>
   <div class="small">Find similar apartments by multiple feature spaces and explore nearby places within a radius.</div>
 </div>
 """, unsafe_allow_html=True)
@@ -114,18 +114,18 @@ st.write("")
 # Sidebar controls
 # ---------------------------
 with st.sidebar:
-    st.header("⚙️ Controls")
-    st.caption("Tune the weights for the three cosine similarity spaces and choose how many results to show.")
+    st.header("Controls")
+    # st.caption("Tune the weights for the three cosine similarity spaces and choose how many results to show.")
     w1 = 30
     w2 = 20
     w3 = 8
     top_n = st.slider("Top N similar", 3, 20, 7, 1)
-    st.caption("Tip: Start with defaults. If results look noisy, reduce weights or Top N.")
+    st.caption("Tip: Start with defaults. If results look noisy, adjust Top N.")
 
 # ---------------------------
 # Tabs
 # ---------------------------
-tab_similar, tab_radius = st.tabs(["🔎 Similar Apartments", "📍 Nearby by Radius"])
+tab_similar, tab_radius = st.tabs(["Similar Apartments", "Nearby by Radius"])
 
 # ========== TAB 1: SIMILAR APARTMENTS ==========
 with tab_similar:
@@ -133,19 +133,17 @@ with tab_similar:
         all_apts = _list_to_sorted_unique(location_df.index)
         query = st.selectbox("Select an apartment", all_apts, index=0, key="sim_apartment")
 
-        run_sim = st.button("🚀 Recommend", type="primary")
+        run_sim = st.button("Recommend", type="primary")
         if run_sim:
             try:
                 target, df_sim = recommend_properties_with_scores(query, top_n=top_n, w1=w1, w2=w2, w3=w3)
 
                 # KPI header
-                k1, k2, k3 = st.columns(3)
+                k1, k2 = st.columns(2)
                 with k1:
                     st.metric("Base Apartment", target)
                 with k2:
                     st.metric("Results", len(df_sim))
-                with k3:
-                    st.metric("Weights", f"{w1:.1f} / {w2:.1f} / {w3:.1f}")
 
                 # Chart
                 fig = px.bar(
@@ -156,7 +154,7 @@ with tab_similar:
                     title="Top Similar Apartments",
                     text=[f"{v:.3f}" for v in df_sim["Similarity"]],
                 )
-                fig.update_layout(height=420, xaxis_title="Similarity (cosine)", yaxis_title="")
+                # fig.update_layout(height=420, xaxis_title="Similarity (cosine)", yaxis_title="")
                 st.plotly_chart(fig, width='stretch')
 
                 # Table (styled)
@@ -186,7 +184,7 @@ with tab_radius:
         selected_location = st.selectbox("Pick a reference location", location_options, key="radius_location")
         radius_km = st.slider("Radius (km)", min_value=0.5, max_value=25.0, value=5.0, step=0.5)
 
-        go = st.button("🔍 Search Nearby")
+        go = st.button("Search Nearby")
         if go:
             try:
                 ser = location_df[location_df[selected_location] < radius_km * 1000][selected_location].sort_values()
@@ -211,19 +209,15 @@ with tab_radius:
                         title=f"Nearest to {selected_location} (≤ {radius_km:.1f} km)",
                         text=[_format_km(v) for v in out["Distance"]],
                     )
-                    fig2.update_layout(height=500, xaxis_title="Distance (m)", yaxis_title="")
+                    fig2.update_layout(height=500, xaxis_title="Distance (km)", yaxis_title="")
                     st.plotly_chart(fig2, width='stretch')
-
-                    # Download
-                    csv2 = out.to_csv(index=False).encode("utf-8")
-                    st.download_button("⬇️ Download Nearby CSV", data=csv2, file_name=f"nearby_{selected_location}.csv", mime="text/csv")
 
             except Exception as e:
                 st.error(f"Search failed: {e}")
 
-# ---------------------------
-# Footer
-# ---------------------------
-st.write("")
-st.markdown("""<hr/>""", unsafe_allow_html=True)
-st.caption("Built with ❤️ in Streamlit — Similarity source: your three cosine spaces; Nearby source: distance matrix.")
+st.write("---")
+st.caption(
+    "Built by **Amul Poudel** · "
+    "[GitHub](https://github.com/Amul-byte) · "
+    "Deployed on Streamlit Cloud / Render"
+)

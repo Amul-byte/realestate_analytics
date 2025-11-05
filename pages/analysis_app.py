@@ -20,7 +20,7 @@ import seaborn as sns
 # Page Config & Minimal Styling
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="🏙️ Real Estate Analytics",
+    page_title="Real Estate Analytics",
     page_icon="🏗️",
     layout="wide",
     menu_items={
@@ -165,7 +165,7 @@ def apply_filters(
 # Sidebar — Filters
 # -----------------------------------------------------------------------------
 with st.sidebar:
-    st.header("🔎 Filters")
+    st.header("Filters")
     raw_df = load_csv(CSV_PATH)
 
     if raw_df.empty:
@@ -202,7 +202,7 @@ with st.sidebar:
 # -----------------------------------------------------------------------------
 # Title & Intro
 # -----------------------------------------------------------------------------
-st.title("🏙️ Real Estate Analytics Dashboard")
+st.title("Real Estate Analytics Dashboard")
 st.caption("Explore market dynamics across sectors, property types, and BHK configurations.")
 
 # -----------------------------------------------------------------------------
@@ -219,12 +219,21 @@ c1, c2, c3, c4 = st.columns(4)
 with c1:
     st.metric("Listings", f"{len(df):,}")
 with c2:
-    st.metric("Median Price", money(df["price"].median() if "price" in df.columns else None))
+    if "price" in df.columns:
+        median_price = df["price"].median()
+        st.metric("Median Price", f"{median_price:,.2f} Cr.")
+    else:
+        st.metric("Median ₹/sqft", "N/A")
+
 with c3:
     st.metric("Median Area", sqft(df["built_up_area"].median() if "built_up_area" in df.columns else None))
 with c4:
-    med_pps = df["price_per_sqft"].median() if "price_per_sqft" in df.columns else None
-    st.metric("Median $/sqft", price_sqft(med_pps))
+    if "price_per_sqft" in df.columns:
+        med_pps = df["price_per_sqft"].median()
+        st.metric("Median ₹/sqft", f"₹ {med_pps:,.2f}")
+    else:
+        st.metric("Median ₹/sqft", "N/A")
+
 
 st.write("---")
 
@@ -330,7 +339,7 @@ with tab_distrib:
 
 # --- Insights Tab ---
 with tab_insights:
-    st.subheader("Top Sectors by Median $/sqft")
+    st.subheader("Top Sectors by Median ₹/sqft")
     if {"sector","price_per_sqft"}.issubset(df.columns):
         top = (
             df[["sector","price_per_sqft"]].dropna()

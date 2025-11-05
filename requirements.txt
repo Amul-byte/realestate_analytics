@@ -9,6 +9,7 @@ xgboost
 shap
 category-encoders
 h3
+mime
 
 # Vi
 matplotlib

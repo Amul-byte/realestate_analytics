@@ -95,7 +95,7 @@ st.write("")
 # ---------------------------
 # Navigation cards
 # ---------------------------
-st.subheader("Jump in")
+st.subheader("Features")
 
 c1, c2, c3 = st.columns(3)
 
@@ -107,7 +107,8 @@ with c1:
     </div>
     """, unsafe_allow_html=True)
     # Link to your page (adjust the page path/label to your filenames)
-    st.page_link("pages/Analysis_app.py", label="Open Analysis", icon="📊")
+    # st.page_link("pages/Analysis_app.py", label="Open Analysis", icon="📊")
+    
 
 with c2:
     st.markdown("""
@@ -116,7 +117,7 @@ with c2:
       <div class="small">Fill a short form and get an instant price estimate with a confidence band.</div>
     </div>
     """, unsafe_allow_html=True)
-    st.page_link("pages/Price_predictor.py", label="Open Price Predictor", icon="🤖")
+    # st.page_link("pages/Price_predictor.py", label="Open Price Predictor", icon="🤖")
 
 with c3:
     st.markdown("""
@@ -125,7 +126,7 @@ with c3:
       <div class="small">Find similar apartments and explore nearby options by radius.</div>
     </div>
     """, unsafe_allow_html=True)
-    st.page_link("pages/Recommender_System.py", label="Open Recommender", icon="🏘️")
+    # st.page_link("pages/Recommender_System.py", label="Open Recommender", icon="🏘️")
 
 st.write("")
 

@@ -758,15 +758,6 @@ wheels = [
 ]
 
 [[package]]
-name = "mime"
-version = "0.1.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "future" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c3/94/d211d0a0e1ad71d7b42dc85531f9aa463393bcbee71b9492b2881361406e/mime-0.1.0.tar.gz", hash = "sha256:11f010bf1bde055eb62eee707997f5bc7682daccf4993f704d97b350f7c34ce8", size = 32133, upload-time = "2016-08-04T06:28:23.012Z" }
-
-[[package]]
 name = "multimethod"
 version = "1.12"
 source = { registry = "https://pypi.org/simple" }
@@ -1463,7 +1454,6 @@ dependencies = [
     { name = "seaborn" },
     { name = "shap" },
     { name = "streamlit" },
-    { name = "sync" },
     { name = "uv" },
     { name = "watchdog" },
     { name = "xgboost" },
@@ -1486,7 +1476,6 @@ requires-dist = [
     { name = "seaborn", specifier = ">=0.13.2" },
     { name = "shap", specifier = ">=0.49.1" },
     { name = "streamlit", specifier = ">=1.51.0" },
-    { name = "sync", specifier = ">=1.0.0" },
     { name = "uv", specifier = ">=0.9.7" },
     { name = "watchdog", specifier = ">=6.0.0" },
     { name = "xgboost", specifier = ">=3.1.1" },
@@ -1863,11 +1852,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/39/60/868371b6482ccd9ef423c6f62650066cf8271fdb2ee84f192695ad6b7a96/streamlit-1.51.0-py3-none-any.whl", hash = "sha256:4008b029f71401ce54946bb09a6a3e36f4f7652cbb48db701224557738cfda38", size = 10171702, upload-time = "2025-10-29T17:07:35.97Z" },
 ]
 
-[[package]]
-name = "sync"
-version = "1.0.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/89/72/60d97fe2f6b74993230148bc25106569c6e8ed5292eab46f5f917d120b82/sync-1.0.0.zip", hash = "sha256:9f8e9a5c89dec5e82efaa2ae64a8c6f63690a3c4f4d5f0f84660202306ea078e", size = 6388, upload-time = "2014-12-14T05:42:39.238Z" }
 
 [[package]]
 name = "tenacity"

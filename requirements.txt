@@ -1,23 +1,22 @@
 # Streamlit app core
-streamlit>=1.33,<2
+streamlit
 
 # Data & ML
-numpy>=1.26.4,<2.0
-pandas>=2.2,<2.3
-scikit-learn>=1.4,<1.6
-xgboost>=2.0,<3
-shap>=0.49,<0.50
-category-encoders>=2.6,<3
-h3>=4.1,<5
+numpy
+pandas
+scikit-learn
+xgboost
+shap
+category-encoders
+h3
 
-# Viz
-matplotlib>=3.8,<3.10
-seaborn>=0.13,<0.14
-plotly>=5.24,<6
+# Vi
+matplotlib
+seaborn
+plotly
 
-# Utils
-pyperclip>=1.8,<2
-nbformat>=5.10,<6
+pyperclip
+nbformat
 
 # Profiling (optional)
-ydata-profiling>=4.6,<5
+ydata-profiling

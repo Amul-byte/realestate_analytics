@@ -124,6 +124,3 @@ Contributions are welcome. Good first steps:
 - `pyproject.toml` — dependency list and metadata.
 - `app.py` and files in `pages/` — Streamlit app entry points.
 - Notebooks — the canonical record of experiments and preprocessing steps.
-
-## Contact / Author
-Repository owner: `Amul-byte` (local workspace name). Add your preferred contact details or a CONTRIBUTORS file.

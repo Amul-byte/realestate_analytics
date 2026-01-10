@@ -4,7 +4,7 @@ A compact repository for exploratory data analysis, feature engineering, and sim
 
 ## Highlights
 - Fast EDA and profiling using pandas / ydata-profiling.
-- Streamlit UI for quick demos and an interactive price predictor.
+- StreamUI for quick demos and an interactive price predictor.
 - Notebooks covering data cleaning, outlier treatment, feature selection and model selection.
 
 ## Repository structure

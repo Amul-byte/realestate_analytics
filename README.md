@@ -9,7 +9,6 @@ A compact repository for exploratory data analysis, feature engineering, and sim
 
 ## Repository structure
 
-Top-level files and folders you'll find in the repo:
 
 ```
 app.py                     # Streamlit entry point (page config + app launcher)

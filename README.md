@@ -7,10 +7,7 @@ A compact repository for exploratory data analysis, feature engineering, and sim
 - StreamUI for quick demos and an interactive price predictor.
 - Notebooks covering data cleaning, outlier treatment, feature selection and model selection.
 
-## Repository structure
 
-
-```
 app.py                     # Streamlit entry point (page config + app launcher)
 pyproject.toml             # Project metadata + dependencies (Python >= 3.11)
 README.md                  # This file

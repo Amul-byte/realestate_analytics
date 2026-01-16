@@ -10,7 +10,6 @@ A compact repository for exploratory data analysis, feature engineering, and sim
 
 app.py                     # Streamlit entry point (page config + app launcher)
 pyproject.toml             # Project metadata + dependencies (Python >= 3.11)
-README.md                  # This file
 datasets/                  # CSV datasets used across notebooks and app
 pages/                     # Streamlit page modules (analysis, predictor, recommender)
 *.ipynb                    # Notebooks for EDA, preprocessing and modeling
